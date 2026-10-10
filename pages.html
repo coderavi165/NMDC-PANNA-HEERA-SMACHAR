@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>हीरा समाचार मई जून 2026 | NMDC Panna</title>
+
+    <!-- Favicon (Browser Tab Logo) -->
+    <link rel="icon" href="logo.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", "Noto Sans Devanagari", sans-serif;
+            min-height: 100vh;
+            color: #ffffff;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(0, 212, 255, 0.20),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(124, 58, 237, 0.22),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(236, 72, 153, 0.18),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #020617,
+                    #071a3d 45%,
+                    #1e1b4b 75%,
+                    #111827
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           PAGE LOADER
+        ========================== */
+
+        .page-loader {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 999999;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.15s ease,
+                visibility 0.15s ease;
+        }
+
+        .page-loader.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* =========================
+           NMDC LOGO + LOADING RING
+        ========================== */
+
+        .loader-box {
+            position: relative;
+
+            width: 105px;
+            height: 105px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* घूमने वाली Ring */
+
+        .loader-circle {
+            position: absolute;
+
+            width: 105px;
+            height: 105px;
+
+            border: 4px solid #e5e7eb;
+
+            border-top-color: #4f46e5;
+            border-right-color: #9333ea;
+            border-bottom-color: #ec4899;
+
+            border-radius: 50%;
+
+            animation:
+                loaderSpin 0.7s linear infinite;
+        }
+
+
+        /* बीच में NMDC Logo */
+
+        .loader-logo {
+            position: relative;
+
+            z-index: 2;
+
+            width: 72px;
+            height: 72px;
+
+            padding: 7px;
+
+            object-fit: contain;
+
+            background: #ffffff;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 8px 25px
+                rgba(79, 70, 229, 0.18);
+        }
+
+
+        @keyframes loaderSpin {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .header {
+            width: 100%;
+
+            background: #f8f7f2;
+
+            color: #111827;
+
+            border-bottom:
+                1px solid rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .header-inner {
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding: 15px 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        /* =========================
+           LOGO
+        ========================== */
+
+        .logo-area {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .logo-area img {
+            width: 55px;
+
+            height: 55px;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+        }
+
+
+        .logo-text {
+            font-size: 18px;
+
+            font-weight: 800;
+
+            color: #111827;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .logo-subtitle {
+            font-size: 11px;
+
+            color: #64748b;
+
+            margin-top: 2px;
+        }
+
+
+        /* =========================
+           NAVIGATION
+        ========================== */
+
+        nav {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        nav a {
+            position: relative;
+
+            padding: 10px 16px;
+
+            color: #334155;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            transition: all 0.3s ease;
+        }
+
+
+        nav a:hover {
+            color: #4f46e5;
+
+            background: #f1f3ff;
+
+            box-shadow:
+                0 4px 12px
+                rgba(79, 70, 229, 0.12);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        nav a.active {
+            color: #4f46e5;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef2ff,
+                    #f5f3ff
+                );
+
+            box-shadow:
+                0 5px 16px
+                rgba(79, 70, 229, 0.15);
+        }
+
+
+        nav a.active::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 20%;
+
+            bottom: 3px;
+
+            width: 60%;
+
+            height: 3px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #9333ea,
+                    #ec4899
+                );
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 80px 25px 55px;
+
+            text-align: center;
+        }
+
+
+        .hero-badge {
+            display: inline-block;
+
+            padding: 8px 18px;
+
+            border:
+                1px solid rgba(255,255,255,0.20);
+
+            background:
+                rgba(255,255,255,0.08);
+
+            backdrop-filter:
+                blur(12px);
+
+            border-radius: 50px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #a5f3fc;
+
+            margin-bottom: 22px;
+        }
+
+
+        .hero h1 {
+            font-size:
+                clamp(38px, 6vw, 72px);
+
+            font-weight: 800;
+
+            line-height: 1.15;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #67e8f9,
+                    #38bdf8,
+                    #818cf8,
+                    #c084fc,
+                    #f472b6
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            background-size: 300% auto;
+
+            animation:
+                gradientMove 6s linear infinite;
+
+            margin-bottom: 20px;
+        }
+
+
+        @keyframes gradientMove {
+
+            0% {
+                background-position: 0% center;
+            }
+
+            50% {
+                background-position: 100% center;
+            }
+
+            100% {
+                background-position: 0% center;
+            }
+
+        }
+
+
+        .hero p {
+            max-width: 760px;
+
+            margin: auto;
+
+            color: #cbd5e1;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           DOCUMENT SECTION
+        ========================== */
+
+        .documents {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 25px 25px 80px;
+        }
+
+
+        .section-title {
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .section-title h2 {
+            font-size: 28px;
+
+            color: #ffffff;
+
+            margin-bottom: 8px;
+        }
+
+
+        .section-title p {
+            color: #94a3b8;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           GRID
+        ========================== */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================== */
+
+        .card {
+            position: relative;
+
+            padding: 28px 22px;
+
+            min-height: 210px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.12),
+                    rgba(255,255,255,0.04)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.13);
+
+            backdrop-filter:
+                blur(18px);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.20);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+
+            overflow: hidden;
+        }
+
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+
+            height: 150px;
+
+            top: -70px;
+
+            right: -70px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(56,189,248,0.18);
+
+            filter: blur(5px);
+        }
+
+
+        .card:hover {
+            transform:
+                translateY(-9px) scale(1.015);
+
+            border-color:
+                rgba(56,189,248,0.50);
+
+            box-shadow:
+                0 25px 65px rgba(0,0,0,0.35),
+
+                0 0 35px rgba(56,189,248,0.12);
+        }
+
+
+        /* =========================
+           ICON
+        ========================== */
+
+        .icon {
+            width: 52px;
+
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 15px;
+
+            margin-bottom: 20px;
+
+            font-size: 23px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(34,211,238,0.25),
+                    rgba(124,58,237,0.30)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.12);
+        }
+
+
+        /* =========================
+           CARD TEXT
+        ========================== */
+
+        .card h3 {
+            font-size: 17px;
+
+            color: #ffffff;
+
+            margin-bottom: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .card p {
+            font-size: 12px;
+
+            color: #94a3b8;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           PDF BUTTON
+        ========================== */
+
+        .pdf-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            width: 100%;
+
+            padding: 11px 14px;
+
+            border-radius: 11px;
+
+            text-decoration: none;
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0891b2,
+                    #2563eb,
+                    #7c3aed,
+                    #db2777
+                );
+
+            background-size: 250% auto;
+
+            transition:
+                all 0.35s ease;
+
+            box-shadow:
+                0 8px 25px
+                rgba(37,99,235,0.20);
+
+            cursor: pointer;
+
+            border: none;
+        }
+
+
+        .pdf-btn:hover {
+            background-position:
+                right center;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(124,58,237,0.35);
+        }
+
+
+        /* =========================
+           PDF MODAL
+        ========================== */
+
+        .pdf-modal {
+            display: none;
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background:
+                rgba(2, 6, 23, 0.95);
+
+            z-index: 9999;
+
+            flex-direction: column;
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        .pdf-modal.active {
+            display: flex;
+        }
+
+
+        .pdf-modal-header {
+            height: 60px;
+
+            background: #0f172a;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.1);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 25px;
+        }
+
+
+        .back-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background:
+                rgba(56,189,248,0.15);
+
+            color: #38bdf8;
+
+            border:
+                1px solid rgba(56,189,248,0.3);
+
+            padding: 9px 18px;
+
+            border-radius: 10px;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+        }
+
+
+        .back-btn:hover {
+            background: #38bdf8;
+
+            color: #0f172a;
+
+            box-shadow:
+                0 0 15px
+                rgba(56,189,248,0.4);
+        }
+
+
+        .pdf-modal-title {
+            font-size: 16px;
+
+            font-weight: 700;
+
+            color: #e2e8f0;
+        }
+
+
+        .pdf-modal-body {
+            flex: 1;
+
+            width: 100%;
+
+            height: calc(100% - 60px);
+        }
+
+
+        .pdf-modal-body iframe {
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            margin-top: 30px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            background:
+                rgba(0,0,0,0.20);
+        }
+
+
+        footer h3 {
+            font-size: 15px;
+
+            color: #e2e8f0;
+
+            margin-bottom: 8px;
+        }
+
+
+        footer p {
+            font-size: 12px;
+
+            color: #64748b;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 700px) {
+
+            .header-inner {
+                padding: 12px 18px;
+            }
+
+
+            .nav a {
+                padding: 8px 10px;
+
+                font-size: 12px;
+            }
+
+
+            .hero {
+                padding-top: 55px;
+            }
+
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .documents {
+                padding-left: 18px;
+
+                padding-right: 18px;
+            }
+
+
+            .pdf-modal-title {
+                display: none;
+            }
+
+
+            /* MOBILE LOADER */
+
+            .loader-box {
+                width: 92px;
+                height: 92px;
+            }
+
+            .loader-circle {
+                width: 92px;
+                height: 92px;
+            }
+
+            .loader-logo {
+                width: 64px;
+                height: 64px;
+            }
+
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================== */
+
+        @media (max-width: 420px) {
+
+            .logo-text {
+                font-size: 15px;
+            }
+
+
+            .logo-subtitle {
+                font-size: 9px;
+            }
+
+
+            .nav a {
+                font-size: 11px;
+
+                padding: 7px 8px;
+            }
+
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+
+            .hero p {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         PAGE LOADER
+    ========================= -->
+
+    <div class="page-loader" id="pageLoader">
+
+        <div class="loader-box">
+
+            <!-- घूमने वाली Ring -->
+
+            <div class="loader-circle"></div>
+
+            <!-- बीच में NMDC Logo -->
+
+            <img
+                src="logo.png"
+                alt="NMDC Logo"
+                class="loader-logo"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+        <div class="header-inner">
+
+
+            <!-- LOGO -->
+
+            <div class="logo-area">
+
+                <img
+                    src="logo.png"
+                    alt="NMDC Logo"
+                >
+
+                <div>
+
+                    <div class="logo-text">
+                        NMDC PANNA
+                    </div>
+
+                    <div class="logo-subtitle">
+                        Diamond Mining Project
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOME + PAGES -->
+
+            <nav class="nav">
+
+                <a href="index.html">
+                    🏠 Home
+                </a>
+
+                <a href="pages.html" class="active">
+                    📄 Pages
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            ✦ OFFICIAL PROJECT NEWS
+        </div>
+
+
+        <h1>
+            हीरा समाचार मई जून 2026
+        </h1>
+
+
+        <p>
+            पन्ना डायमंड माइनिंग प्रोजेक्ट से संबंधित
+            मई-जून 2026 के आधिकारिक समाचार, रिपोर्ट्स एवं
+            महत्वपूर्ण जानकारी एक ही स्थान पर देखें।
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         DOCUMENTS
+    ========================= -->
+
+    <section class="documents">
+
+        <div class="section-title">
+
+            <h2>
+                Project Information
+            </h2>
+
+            <p>
+                महत्वपूर्ण दस्तावेज़ एवं प्रोजेक्ट अपडेट
+            </p>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <!-- CARD 1 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    📰
+                </div>
+
+                <h3>
+                    मुख्य समाचार
+                </h3>
+
+                <p>
+                    प्रोजेक्ट से संबंधित मुख्य समाचार एवं महत्वपूर्ण अपडेट।
+                </p>
+
+                <button
+                    onclick="openPdf('mukhyasmachar.pdf', 'मुख्य समाचार')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🛡️
+                </div>
+
+                <h3>
+                    सुरक्षा समिति की बैठक
+                </h3>
+
+                <p>
+                    सुरक्षा समिति की बैठक से संबंधित महत्वपूर्ण जानकारी।
+                </p>
+
+                <button
+                    onclick="openPdf('bethak.pdf', 'सुरक्षा समिति की बैठक')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🏏
+                </div>
+
+                <h3>
+                    फैमिली क्रिकेट टूर्नामेंट
+                </h3>
+
+                <p>
+                    फैमिली क्रिकेट टूर्नामेंट से संबंधित जानकारी एवं गतिविधियाँ।
+                </p>
+
+                <button
+                    onclick="openPdf('cricketturnament.pdf', 'फैमिली क्रिकेट टूर्नामेंट')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    📅
+                </div>
+
+                <h3>
+                    अन्य मुख्य कार्यक्रम 2026
+                </h3>
+
+                <p>
+                    वर्ष 2026 के प्रमुख कार्यक्रमों एवं गतिविधियों की जानकारी।
+                </p>
+
+                <button
+                    onclick="openPdf('charseath.pdf', 'अन्य मुख्य कार्यक्रम 2026')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+            <!-- CARD 5 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🗣️
+                </div>
+
+                <h3>
+                    राजभाषा कार्यशाला का आयोजन
+                </h3>
+
+                <p>
+                    राजभाषा कार्यशाला एवं उससे संबंधित गतिविधियों की जानकारी।
+                </p>
+
+                <button
+                    onclick="openPdf('rajbhasa kary shala ka ayojan.pdf', 'राजभाषा कार्यशाला का आयोजन')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+            <!-- CARD 6 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    👥
+                </div>
+
+                <h3>
+                    कार्मिक मामले
+                </h3>
+
+                <p>
+                    कार्मिक मामलों एवं कर्मचारियों से संबंधित महत्वपूर्ण जानकारी।
+                </p>
+
+                <button
+                    onclick="openPdf('karmik mamale.pdf', 'कार्मिक मामले')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+            <!-- CARD 7 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🏫
+                </div>
+
+                <h3>
+                    विद्यालय का परिणाम
+                </h3>
+
+                <p>
+                    विद्यालय के परीक्षा परिणाम एवं संबंधित जानकारी।
+                </p>
+
+                <button
+                    onclick="openPdf('dav school.pdf', 'विद्यालय का परिणाम')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+            <!-- CARD 8 -->
+
+            <div class="card">
+
+                <div class="icon">
+                    💎
+                </div>
+
+                <h3>
+                    हीरा उत्पादन
+                </h3>
+
+                <p>
+                    पन्ना डायमंड माइनिंग प्रोजेक्ट के हीरा उत्पादन से संबंधित जानकारी।
+                </p>
+
+                <button
+                    onclick="openPdf('heera utpadan.pdf', 'हीरा उत्पादन')"
+                    class="pdf-btn">
+
+                    📄 PDF देखें ↗
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PDF MODAL
+    ========================= -->
+
+    <div id="pdfModal" class="pdf-modal">
+
+        <div class="pdf-modal-header">
+
+            <button
+                class="back-btn"
+                onclick="closePdf()">
+
+                ← Back to Website (वापस जाएं)
+
+            </button>
+
+
+            <div
+                id="pdfModalTitle"
+                class="pdf-modal-title">
+
+                PDF Viewer
+
+            </div>
+
+
+            <button
+                class="back-btn"
+                onclick="closePdf()"
+                style="
+                    background: rgba(239, 68, 68, 0.2);
+                    color: #f87171;
+                    border-color: rgba(239, 68, 68, 0.4);
+                ">
+
+                ✖ Close
+
+            </button>
+
+        </div>
+
+
+        <div class="pdf-modal-body">
+
+            <iframe
+                id="pdfFrame"
+                src="">
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <h3>
+            NATIONAL MINERAL DEVELOPMENT CORPORATION
+        </h3>
+
+        <p>
+            PANNA (DIAMOND MINING PROJECT)
+            <br>
+            © 2026 NMDC Panna | All Rights Reserved
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           PDF OPEN
+        ========================= */
+
+        function openPdf(pdfUrl, title) {
+
+            document.getElementById('pdfFrame').src = pdfUrl;
+
+            document.getElementById('pdfModalTitle').innerText = title;
+
+            document.getElementById('pdfModal').classList.add('active');
+
+            document.body.style.overflow = 'hidden';
+        }
+
+
+        /* =========================
+           PDF CLOSE
+        ========================= */
+
+        function closePdf() {
+
+            document.getElementById('pdfModal').classList.remove('active');
+
+            document.getElementById('pdfFrame').src = '';
+
+            document.body.style.overflow = 'auto';
+        }
+
+
+        /* =========================
+           PAGE LOADING
+        ========================= */
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const loader =
+                document.getElementById("pageLoader");
+
+            const links =
+                document.querySelectorAll("nav a");
+
+
+            links.forEach(function (link) {
+
+                link.addEventListener("click", function (event) {
+
+                    /* अगर Current Page पर ही क्लिक किया */
+
+                    if (this.classList.contains("active")) {
+
+                        return;
+                    }
+
+
+                    event.preventDefault();
+
+
+                    const target =
+                        this.href;
+
+
+                    /* Loading दिखाओ */
+
+                    loader.classList.add("show");
+
+
+                    /* 0.5 Second बाद Page Open */
+
+                    setTimeout(function () {
+
+                        window.location.href = target;
+
+                    }, 500);
+
+                });
+
+            });
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
