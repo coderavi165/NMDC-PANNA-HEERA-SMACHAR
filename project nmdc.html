@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NMDC Panna | Diamond Mining Project</title>
+
+<!-- Browser Tab Logo -->
+<link rel="icon" type="image/png" href="logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --navy: #101a34;
+    --blue: #283c79;
+    --purple: #7654d7;
+    --gold: #efd18b;
+    --light: #f5f7fc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: "Noto Sans Devanagari", sans-serif;
+    background: var(--light);
+    color: #1e293b;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* PAGE LOADER */
+#pageLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background: #f9faff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+#pageLoader.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.loader-logo {
+    position: relative;
+    width: 95px;
+    height: 95px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 2px solid #ddd8f7;
+    border-radius: 50%;
+    box-shadow: 0 10px 35px rgba(79,70,229,.18);
+    animation: loaderLogoPulse 1.8s ease-in-out infinite;
+}
+
+.loader-logo::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border: 4px solid #e5e7eb;
+    border-top-color: #6252ce;
+    border-right-color: #bd91ee;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+
+.loader-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+}
+
+.loader-text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #28365e;
+}
+
+@keyframes loaderLogoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* HEADER */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 13px 6%;
+    background: rgba(255,255,255,.96);
+    border-bottom: 1px solid #e8eaf2;
+    box-shadow: 0 5px 25px rgba(20,30,70,.07);
+    backdrop-filter: blur(16px);
+    transition: box-shadow .3s;
+}
+
+.header.scrolled {
+    box-shadow: 0 8px 30px rgba(20,30,70,.14);
+}
+
+.header-inner {
+    max-width: 1450px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.logo-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 2px solid #d9d5f8;
+    border-radius: 50%;
+    box-shadow: 0 5px 18px rgba(79,70,229,.17);
+    overflow: hidden;
+}
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.logo-name {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #202e58;
+}
+
+.logo-subtitle {
+    font-size: 9px;
+    font-weight: 700;
+    color: #7b8499;
+    letter-spacing: 1px;
+}
+
+/* NAVIGATION */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 19px;
+    border-radius: 12px;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.nav a:hover {
+    color: #5744bd;
+    background: #f0edff;
+    transform: translateY(-2px);
+}
+
+.nav a.active {
+    color: white;
+    background: linear-gradient(120deg, #344b92, #7654d7);
+    box-shadow: 0 7px 18px rgba(87,69,190,.24);
+}
+
+.nav a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 28%;
+    width: 44%;
+    height: 3px;
+    border-radius: 10px;
+    background: var(--gold);
+}
+
+/* HERO SECTION */
+.hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 650px;
+    padding: 90px 6% 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(113,141,231,.24), transparent 35%),
+        radial-gradient(ellipse at 85% 80%, rgba(155,102,230,.24), transparent 35%),
+        linear-gradient(130deg, #101a34, #1d2c55 45%, #343477 75%, #493a83);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .16;
+    background-image:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.hero-glow {
+    position: absolute;
+    z-index: -1;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.glow-one {
+    top: -240px;
+    left: -100px;
+    background: rgba(94,125,255,.25);
+    animation: glowMove 9s ease-in-out infinite alternate;
+}
+
+.glow-two {
+    right: -150px;
+    bottom: -250px;
+    background: rgba(199,126,255,.22);
+    animation: glowMove 8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes glowMove {
+    to { transform: translate(40px,35px) scale(1.15); }
+}
+
+/* DIAMOND DECORATIONS */
+.diamond {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border: 1px solid rgba(255,255,255,.65);
+    transform: rotate(45deg);
+    pointer-events: none;
+    animation: diamondFloat 7s ease-in-out infinite;
+}
+
+.diamond:nth-child(1) { top: 20%; left: 12%; width: 15px; height: 15px; }
+.diamond:nth-child(2) { top: 30%; right: 13%; animation-delay: -2s; }
+.diamond:nth-child(3) { bottom: 23%; left: 20%; animation-delay: -4s; }
+.diamond:nth-child(4) { bottom: 18%; right: 20%; width: 18px; height: 18px; animation-delay: -1s; }
+.diamond:nth-child(5) { top: 14%; right: 34%; width: 7px; height: 7px; animation-delay: -3s; }
+
+@keyframes diamondFloat {
+    0%, 100% { opacity: .3; translate: 0 0; }
+    50% { opacity: .9; translate: 0 -24px; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    color: white;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 100%;
+    margin-bottom: 29px;
+    padding: 11px 20px;
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: 50px;
+    background: rgba(255,255,255,.09);
+    backdrop-filter: blur(12px);
+    color: #f5dfaa;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    animation: fadeUp .8s ease both;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #e7c77b;
+    box-shadow: 0 0 12px rgba(231,199,123,.8);
+}
+
+.hero h1 {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(32px,4.7vw,66px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
+    text-shadow: 0 8px 35px rgba(0,0,0,.23);
+    animation: fadeUp 1s ease both;
+}
+
+.heading-light {
+    display: block;
+    margin-bottom: 12px;
+    color: #fff;
+    font-size: .58em;
+    letter-spacing: 4px;
+}
+
+.heading-gradient {
+    display: block;
+    color: transparent;
+    background: linear-gradient(110deg, #fff, #efd18b, #d8c6ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.hero-description {
+    max-width: 720px;
+    margin: 25px auto 0;
+    color: rgba(235,240,255,.8);
+    font-size: 15px;
+    line-height: 2;
+    animation: fadeUp 1s .2s ease both;
+}
+
+/* BUTTONS */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 35px;
+    animation: fadeUp 1s .3s ease both;
+}
+
+.btn {
+    min-height: 49px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 24px;
+    border: 1px solid transparent;
+    border-radius: 13px;
+    font-size: 13px;
+    font-weight: 800;
+    transition: transform .3s, box-shadow .3s, background .3s;
+}
+
+.btn-primary {
+    color: #222c4b;
+    background: linear-gradient(120deg, #f7e5b5, #e5c77b);
+    box-shadow: 0 9px 25px rgba(231,199,123,.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(231,199,123,.3);
+}
+
+.btn-outline {
+    color: white;
+    border-color: rgba(255,255,255,.3);
+    background: rgba(255,255,255,.06);
+}
+
+.btn-outline:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,.15);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* HERO DIVIDER */
+.hero-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: var(--light);
+    clip-path: polygon(0 75%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* PROJECT OVERVIEW */
+.highlights {
+    padding: 75px 6% 100px;
+    background: var(--light);
+}
+
+.section-heading {
+    max-width: 760px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.section-kicker {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: #7654d7;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    color: #172447;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(26px,3.5vw,42px);
+    font-weight: 900;
+    line-height: 1.3;
+}
+
+.section-heading p {
+    margin-top: 16px;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.highlight-grid {
+    max-width: 1050px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 24px;
+}
+
+.highlight-card {
+    padding: 32px;
+    border: 1px solid #e6e9f3;
+    border-radius: 22px;
+    background: white;
+    box-shadow: 0 12px 35px rgba(26,39,83,.05);
+    transition: transform .3s, box-shadow .3s;
+}
+
+.highlight-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 45px rgba(26,39,83,.11);
+}
+
+.card-icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(135deg,#eeeaff,#e5edff);
+    color: #6650c5;
+    font-size: 30px;
+}
+
+.highlight-card h3 {
+    margin-bottom: 12px;
+    color: #202e58;
+    font-family: "Montserrat", sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.highlight-card p {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FOOTER */
+footer {
+    padding: 55px 6% 20px;
+    color: #dbe3f7;
+    background: linear-gradient(125deg,#101a34,#202c58 70%,#3d3472);
+}
+
+.footer-inner {
+    max-width: 1250px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    padding-bottom: 40px;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer-logo {
+    width: 54px;
+    height: 54px;
+    padding: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: white;
+}
+
+.footer-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer-brand h3 {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.footer-brand span {
+    display: block;
+    margin-top: 5px;
+    color: #efd18b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.footer-about {
+    max-width: 520px;
+    margin-top: 22px;
+    color: #bdc8e1;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.footer-links h4 {
+    margin-bottom: 5px;
+    color: #efd18b;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.footer-links a {
+    color: #dbe3f7;
+    font-size: 13px;
+    transition: color .3s, transform .3s;
+}
+
+.footer-links a:hover {
+    color: #efd18b;
+    transform: translateX(4px);
+}
+
+.footer-bottom {
+    max-width: 1250px;
+    margin: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: #aebbd8;
+    font-size: 12px;
+}
+
+.back-top {
+    color: #efd18b;
+    font-weight: 700;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 760px) {
+    .header { padding: 12px 4%; }
+    .header-inner { flex-wrap: wrap; gap: 14px; }
+    .logo-name { font-size: 17px; }
+    .logo-subtitle { font-size: 8px; }
+    .logo-icon { width: 45px; height: 45px; }
+    .nav { gap: 5px; }
+    .nav a { padding: 10px 13px; font-size: 12px; }
+    .hero { min-height: 570px; padding: 75px 5% 100px; }
+    .hero-badge { font-size: 9px; padding: 10px 13px; letter-spacing: .5px; }
+    .hero h1 { letter-spacing: -1px; }
+    .hero-description { font-size: 14px; }
+    .highlights { padding: 60px 5% 75px; }
+    .highlight-grid { grid-template-columns: 1fr; }
+    .highlight-card { padding: 26px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 35px; }
+    .footer-bottom { align-items: flex-start; flex-direction: column; line-height: 1.8; }
+    .loader-logo { width: 82px; height: 82px; padding: 8px; }
+}
+
+@media (max-width: 350px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .nav { width: 100%; }
+    .nav a { flex: 1; }
+    .hero h1 { font-size: 26px; }
+    .hero-badge { font-size: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE LOADER -->
+<div id="pageLoader" aria-hidden="true">
+    <div class="loader-logo">
+        <img src="logo.png" alt="NMDC Logo">
+    </div>
+    <div class="loader-text">NMDC PANNA</div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="mainHeader">
+    <div class="header-inner">
+        <a href="project nmdc.html" class="logo" aria-label="NMDC Panna Home">
+            <div class="logo-icon">
+                <img src="logo.png" alt="NMDC Logo">
+            </div>
+            <div class="logo-text">
+                <span class="logo-name">NMDC PANNA</span>
+                <span class="logo-subtitle">DIAMOND MINING PROJECT</span>
+            </div>
+        </a>
+
+        <nav class="nav" aria-label="Main navigation">
+            <a href="project nmdc.html" data-page="home">
+                <span>⌂</span> Home
+            </a>
+            <a href="pages.html" data-page="pages">
+                <span>▤</span> Pages
+            </a>
+        </nav>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main>
+    <section class="hero" id="home">
+        <div class="hero-glow glow-one"></div>
+        <div class="hero-glow glow-two"></div>
+
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+        <div class="diamond"></div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                NATIONAL MINERAL DEVELOPMENT CORPORATION
+            </div>
+
+            <h1>
+                <span class="heading-light">WELCOME TO</span>
+                NATIONAL MINERAL
+                <span class="heading-gradient">DEVELOPMENT CORPORATION</span>
+                <span class="heading-gradient">PANNA</span>
+            </h1>
+
+            <p class="hero-description">
+                Panna Diamond Mining Project
+                <br>
+                Explore the project pages and discover the information
+                presented on this website.
+            </p>
+
+            <div class="hero-actions">
+                <a href="pages.html" class="btn btn-primary">
+                    Explore Project Pages <span>→</span>
+                </a>
+                <a href="#highlights" class="btn btn-outline">
+                    Discover More <span>↓</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-divider"></div>
+    </section>
+
+    <!-- PROJECT OVERVIEW -->
+    <section class="highlights" id="highlights">
+        <div class="section-heading reveal">
+            <span class="section-kicker">PROJECT OVERVIEW</span>
+            <h2>Explore NMDC Panna</h2>
+            <p>
+                Access the available project pages through a clean,
+                organized and easy-to-use interface.
+            </p>
+        </div>
+
+        <div class="highlight-grid">
+            <article class="highlight-card reveal">
+                <div class="card-icon">◇</div>
+                <h3>Diamond Mining Project</h3>
+                <p>
+                    Explore the Panna Diamond Mining Project section
+                    and its available website content.
+                </p>
+            </article>
+
+            <article class="highlight-card reveal">
+                <div class="card-icon">▤</div>
+                <h3>Project Pages</h3>
+                <p>
+                    Navigate to the Pages section to access
+                    the available documents and project information.
+                </p>
+            </article>
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="NMDC Logo">
+                </div>
+                <div>
+                    <h3>NMDC Panna</h3>
+                    <span>DIAMOND MINING PROJECT</span>
+                </div>
+            </div>
+
+            <p class="footer-about">
+                National Mineral Development Corporation —
+                Panna Diamond Mining Project.
+                This website provides navigation to the available
+                project pages and related content.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4>QUICK LINKS</h4>
+            <a href="project nmdc.html">⌂ Home</a>
+            <a href="pages.html">▤ Pages</a>
+            <a href="#highlights">◇ Project Overview</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            © <span id="currentYear"></span>
+            NMDC Panna | Diamond Mining Project
+        </p>
+        <a href="#home" class="back-top">Back to Top ↑</a>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const loader = document.getElementById("pageLoader");
+    const header = document.getElementById("mainHeader");
+    const navLinks = document.querySelectorAll(".nav a");
+
+    /* CURRENT YEAR */
+    document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+    /* CURRENT PAGE HIGHLIGHT */
+    const currentFile = decodeURIComponent(
+        window.location.pathname.split("/").pop() || ""
+    ).toLowerCase();
+
+    const isPagesPage = currentFile === "pages.html";
+
+    navLinks.forEach(function (link) {
+        const page = link.dataset.page;
+        const isActive =
+            (isPagesPage && page === "pages") ||
+            (!isPagesPage && page === "home");
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+
+    /* PAGE LOADER ON NAVIGATION */
+    navLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            if (
+                event.ctrlKey ||
+                event.metaKey ||
+                event.shiftKey ||
+                event.altKey ||
+                event.button !== 0
+            ) {
+                return;
+            }
+
+            const target = new URL(link.href, window.location.href);
+
+            if (
+                target.origin !== window.location.origin ||
+                target.href === window.location.href
+            ) {
+                return;
+            }
+
+            event.preventDefault();
+            loader.classList.add("show");
+            loader.setAttribute("aria-hidden", "false");
+
+            setTimeout(function () {
+                window.location.href = target.href;
+            }, 450);
+        });
+    });
+
+    /* HEADER SHADOW */
+    function updateHeader() {
+        header.classList.toggle("scrolled", window.scrollY > 15);
+    }
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    /* REVEAL ANIMATION */
+    const revealItems = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+            function (entries, observerInstance) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -30px 0px"
+            }
+        );
+
+        revealItems.forEach(function (item) {
+            observer.observe(item);
+        });
+    } else {
+        revealItems.forEach(function (item) {
+            item.classList.add("visible");
+        });
+    }
+
+    /* SMOOTH SCROLL */
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            const id = link.getAttribute("href");
+
+            if (!id || id === "#") {
+                return;
+            }
+
+            const target = document.querySelector(id);
+
+            if (target) {
+                event.preventDefault();
+
+                const reduceMotion = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                ).matches;
+
+                target.scrollIntoView({
+                    behavior: reduceMotion ? "auto" : "smooth",
+                    block: "start"
+                });
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
